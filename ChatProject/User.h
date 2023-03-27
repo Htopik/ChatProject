@@ -14,9 +14,9 @@ private:
 
 public:
 	User(string, string, string);
-	string GetLogin();
-	string GetPassword();
-	string GetName();
+	string getLogin();
+	string getPassword();
+	string getName();
 	void setAdmin(bool isAdmin);
 	bool isAdmin();
 

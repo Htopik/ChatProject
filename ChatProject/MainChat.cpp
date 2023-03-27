@@ -49,7 +49,7 @@ void logged() {
 	do {
 		cout << "\n";
 		for (int i = 0; i < Messages.size(); i++) {
-			cout << "\n" << Messages[i].getUser()->GetName() << "> ";
+			cout << "\n" << Messages[i].getUser()->getName() << "> ";
 			cout << Messages[i].getMessage();
 		}
 		cout << "\nUse /help for commands list\n";
@@ -85,14 +85,14 @@ void logged() {
 		else if (command == "/ls list") {
 			cout << "\nLS:";
 			cout << "\n________________________________________________________________________________\n";
-			int loggedIndex = User::getIndexByLogin(RegisteredUsersList, loggedUser->GetLogin());
+			int loggedIndex = User::getIndexByLogin(RegisteredUsersList, loggedUser->getLogin());
 			if (Ls[loggedIndex].size() == 0) {
 				cout << "No LS messages.";
 				cout << "\n________________________________________________________________________________\n";
 				continue;
 			}
 			for (int i = 0; i < Ls[loggedIndex].size(); i++) {
-				cout << "\n" << Ls[loggedIndex][i].getUser()->GetName() << "> ";
+				cout << "\n" << Ls[loggedIndex][i].getUser()->getName() << "> ";
 				cout << Ls[loggedIndex][i].getMessage();
 			}
 			cout << "\n________________________________________________________________________________\n";

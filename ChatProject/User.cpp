@@ -5,15 +5,15 @@ User::User(string log, string pass, string nam) {
 	this->name = nam;
 	this->password = pass;
 }
-string User::GetLogin() {
+string User::getLogin() {
 	return this->login;
 }
 
-string User::GetPassword() {
+string User::getPassword() {
 	return this->password;
 }
 
-string User::GetName() {
+string User::getName() {
 	return this->name;
 }
 
@@ -27,7 +27,7 @@ bool User::isAdmin() {
 
 bool User::isUserExist(vector<User> Users, string log) {
 	for (int i = 0; i < Users.size(); ++i) {
-		if (Users[i].GetLogin() == log)
+		if (Users[i].getLogin() == log)
 			return true;
 	}
 	return false;
@@ -35,7 +35,7 @@ bool User::isUserExist(vector<User> Users, string log) {
 
 int User::checkUser(vector<User> Users, string log, string pass) {
 	for (int i = 0; i < Users.size(); ++i) {
-		if (Users[i].GetLogin() == log && Users[i].GetPassword() == pass)
+		if (Users[i].getLogin() == log && Users[i].getPassword() == pass)
 			return i;
 	}
 	return -1;
@@ -43,7 +43,7 @@ int User::checkUser(vector<User> Users, string log, string pass) {
 
 int User::getIndexByName(vector<User> Users, string nameOfAddressee) {
 	for (int i = 0; i < Users.size(); ++i) {
-		if (Users[i].GetName() == nameOfAddressee)
+		if (Users[i].getName() == nameOfAddressee)
 			return i;
 	}
 	return -1;
@@ -51,7 +51,7 @@ int User::getIndexByName(vector<User> Users, string nameOfAddressee) {
 
 int User::getIndexByLogin(vector<User> Users, string loginOfAddressee) {
 	for (int i = 0; i < Users.size(); ++i) {
-		if (Users[i].GetLogin() == loginOfAddressee)
+		if (Users[i].getLogin() == loginOfAddressee)
 			return i;
 	}
 	return -1;
