@@ -17,17 +17,15 @@ string User::GetName() {
 	return this->name;
 }
 
-string User::showChat() {
-	if (this->poolOfMessages == "")
-		return "There is no messages yet.\n";
-	return this->poolOfMessages;
+void User::setAdmin(bool isAdmin) {
+	this->permission = isAdmin;
 }
 
-void User::sendMessage(User UsverOtpr, string Mess) {//UsverOtpr - Отправитель сообщения
-	this->poolOfMessages += UsverOtpr.GetName() + "> " + Mess + '\n';
+bool User::isAdmin() {
+	return permission == 1;
 }
 
-bool isUserExist(vector<User> Users, string log) {
+bool User::isUserExist(vector<User> Users, string log) {
 	for (int i = 0; i < Users.size(); ++i) {
 		if (Users[i].GetLogin() == log)
 			return true;
@@ -35,7 +33,7 @@ bool isUserExist(vector<User> Users, string log) {
 	return false;
 }
 
-int checkUser(vector<User> Users, string log, string pass) {
+int User::checkUser(vector<User> Users, string log, string pass) {
 	for (int i = 0; i < Users.size(); ++i) {
 		if (Users[i].GetLogin() == log && Users[i].GetPassword() == pass)
 			return i;
@@ -43,9 +41,17 @@ int checkUser(vector<User> Users, string log, string pass) {
 	return -1;
 }
 
-int getIndexByName(vector<User> Users, string nameOfAddressee) {
+int User::getIndexByName(vector<User> Users, string nameOfAddressee) {
 	for (int i = 0; i < Users.size(); ++i) {
 		if (Users[i].GetName() == nameOfAddressee)
+			return i;
+	}
+	return -1;
+}
+
+int User::getIndexByLogin(vector<User> Users, string loginOfAddressee) {
+	for (int i = 0; i < Users.size(); ++i) {
+		if (Users[i].GetLogin() == loginOfAddressee)
 			return i;
 	}
 	return -1;

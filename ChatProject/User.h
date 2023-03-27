@@ -3,23 +3,26 @@
 #include "vector"
 
 using namespace std;
+
 class User
 {
 private:
 	string login;
 	string password;
 	string name;
-	string poolOfMessages="";
+	int permission = 0;
 
 public:
 	User(string, string, string);
 	string GetLogin();
 	string GetPassword();
 	string GetName();
-	void sendMessage(User, string);
-	string showChat();
-};
-bool isUserExist(vector<User>, string);
-int checkUser(vector<User>, string, string);
-int getIndexByName(vector<User>, string);
+	void setAdmin(bool isAdmin);
+	bool isAdmin();
 
+	static bool isUserExist(vector<User> Users, string log);
+	static int checkUser(vector<User> Users, string log, string pass);
+	static int getIndexByName(vector<User> Users, string nameOfAddressee);
+	static int getIndexByLogin(vector<User> Users, string loginOfAddressee);
+
+};
