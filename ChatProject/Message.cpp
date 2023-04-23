@@ -1,9 +1,6 @@
 #include "Message.h"
 
-Message::Message(string text, User* user) {
-	this->text = text;
-	this->user = user;
-}
+Message::Message(const string& text, User* user) : text(text), user(user) {}
 
 string Message::getMessage() {
 	return this->text;

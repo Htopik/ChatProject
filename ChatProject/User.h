@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "vector"
+#include <vector>
 
 using namespace std;
 
@@ -13,7 +13,7 @@ private:
 	int permission = 0;
 
 public:
-	User(string, string, string);
+	User(const string&, const string&, const string&);
 	string getLogin();
 	string getPassword();
 	string getName();

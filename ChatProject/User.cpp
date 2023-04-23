@@ -1,10 +1,7 @@
 #include "User.h"
 
-User::User(string log, string pass, string nam) {
-	this->login = log;
-	this->name = nam;
-	this->password = pass;
-}
+User::User(const string& log, const string& pass, const string& nam) : login(log), name(nam), password(pass) {}
+
 string User::getLogin() {
 	return this->login;
 }

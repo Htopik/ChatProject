@@ -163,12 +163,15 @@ void notLogged() {
 	} while (true);
 }
 
-int main() {
-	char ans;
-	setlocale(LC_ALL, "");
+void startChat() {
 	cout << " Welcome to our chat, wanderer! Please, sign in because you are the first today! First user is admin permanently\n";
 	registration();//В начале был Первый. Этот Первый стал началом всему
 	RegisteredUsersList[0].setAdmin(true);//и админом чата по совместительству
 	notLogged();
+}
+
+int main() {
+	setlocale(LC_ALL, "");
+	startChat();
 	return 0;
 }
