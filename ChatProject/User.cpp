@@ -53,3 +53,28 @@ int User::getIndexByLogin(vector<User> Users, string loginOfAddressee) {
 	}
 	return -1;
 }
+
+User* User::getUserByLogin(vector<User> Users, string login) {
+	for (int i = 0; i < Users.size(); ++i) {
+		if (Users[i].getLogin() == login)
+			return &Users[i];
+	}
+	return nullptr;
+}
+
+istream& operator >>(istream& is, User& obj)
+{
+	is >> obj.name;
+	is >> obj.login;
+	is >> obj.password;
+	return is;
+}
+ostream& operator <<(ostream& os, const User& obj)
+{
+	os << obj.name;
+	os << ' ';
+	os << obj.login;
+	os << ' ';
+	os << obj.password;
+	return os;
+}
