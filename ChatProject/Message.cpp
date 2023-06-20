@@ -34,6 +34,7 @@ ostream& operator <<(ostream& os, const Message& obj)
 	os << obj.user->getLogin();
 	os << ' ';
 	os << obj.text.size();
+	os << ' ';
 	os << obj.text;
 	return os;
 }
