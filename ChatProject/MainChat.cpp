@@ -167,7 +167,7 @@ void notLogged() {
 
 void startChat() {
 	cout << " Welcome to our chat, wanderer! Please, sign/log in because you are the first today!\n";
-	//registration();//В начале был Первый. Этот Первый стал началом всему
+	registration();//В начале был Первый. Этот Первый стал началом всему
 	RegisteredUsersList[0].setAdmin(true);//и админом чата по совместительству
 	notLogged();
 }
@@ -176,49 +176,41 @@ void inputData() {
 	if (!fs::exists("./logs/"))
 		fs::create_directories("./logs/");
 	//Input Data from file
-	ifstream user_file = ifstream("./logs/users.txt", ios::in);
-	ifstream message_file = ifstream("./logs/messages.txt", ios::in);
+	fstream user_file = fstream("./logs/users.txt", std::ios_base::in);
+
+	fstream message_file = fstream("./logs/messages.txt", std::ios_base::in);
 	int count_us = 1;
 	int count_m = 1;
 	if (!user_file) {
-		user_file = ifstream("./logs/users.txt");
+		user_file = fstream("./logs/users.txt", std::ios_base::in, std::ios_base::trunc);
 		count_us = 0;
 	}
 	if (!message_file) {
-		user_file = ifstream("./logs/messages.txt");
+		user_file = fstream("./logs/messages.txt", std::ios_base::in, std::ios_base::trunc);
 		count_m = 0;
 	}
-	if (user_file) {
+	if (count_us) {
 		User temp;
-		if (count_us) {
-			user_file >> count_us;
-			for (int i = 0; i < count_us; ++i) {
-				user_file >> temp;
-				RegisteredUsersList.push_back(temp);
-			}
+		user_file >> count_us;
+		for (int i = 0; i < count_us; ++i) {
+			user_file >> temp;
+			RegisteredUsersList.push_back(temp);
 		}
 	}
 	else
 	{
-		cout << "Could not open file users.txt !" << '\n';
 		user_file.close();
 		message_file.close();
 		return;
 	}
-	if (message_file) {
+	if (count_m) {
 		Message temp;
-		if (count_m) {
-			message_file >> count_m;
-			for (int i = 0; i < count_m; ++i) {
-				message_file >> temp;
-				temp.setUser(RegisteredUsersList);
-				Messages.push_back(temp);
-			}
+		message_file >> count_m;
+		for (int i = 0; i < count_m; ++i) {
+			message_file >> temp;
+			temp.setUser(RegisteredUsersList);
+			Messages.push_back(temp);
 		}
-	}
-	else
-	{
-		cout << "Could not open file users.txt !" << '\n';
 	}
 	user_file.close();
 	message_file.close();
@@ -226,8 +218,8 @@ void inputData() {
 
 void outData(){
 	//Output Data to File
-	ofstream user_file = ofstream("./logs/users.txt");
-	ofstream message_file = ofstream("./logs/messages.txt");
+	fstream user_file = fstream("./logs/users.txt", std::ios_base::out);
+	fstream message_file = fstream("./logs/messages.txt", std::ios_base::out);
 	user_file << RegisteredUsersList.size() << '\n';
 	for (int i = 0; i < RegisteredUsersList.size(); ++i)
 		user_file << RegisteredUsersList[i] << endl;
@@ -235,6 +227,7 @@ void outData(){
 	message_file << Messages.size() << '\n';
 	for (int i = 0; i < Messages.size(); ++i)
 		message_file << Messages[i] << endl;
+
 	user_file.close();
 	message_file.close();
 }
